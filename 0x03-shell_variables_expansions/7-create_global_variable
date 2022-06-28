@@ -1,1 +1,2 @@
-#!bin/200
+#!/bin/bash
+export BEST=School
