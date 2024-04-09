@@ -12,6 +12,9 @@ def top_ten(subreddit):
 
     Args:
         subreddit: A string representing the subreddit name.
+
+    Returns:
+        None if the subreddit is invalid or does not exist.
     """
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
     headers = {"User-Agent": "Mozilla/5.0"}  # Set a custom User-Agent to prevent 429 error
