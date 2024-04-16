@@ -1,4 +1,4 @@
-# 0-strace_is_your_friend.pp
+# Puppet manifest to ensure Apache is properly configured
 
 # Ensure Apache package is installed
 package { 'apache2':
@@ -10,8 +10,8 @@ file { '/etc/apache2/sites-available/your_website.conf':
   content => " <VirtualHost *:80>
                   ServerAdmin webmaster@localhost
                   DocumentRoot /var/www/html
-                  ErrorLog ${APACHE_LOG_DIR}/error.log
-                  CustomLog ${APACHE_LOG_DIR}/access.log combined
+                  ErrorLog ${apache_log_dir}/error.log
+                  CustomLog ${apache_log_dir}/access.log combined
               </VirtualHost>",
   require => Package['apache2'],
   notify  => Service['apache2'],
@@ -38,15 +38,6 @@ file { '/var/www/html/index.html':
               </body>
               </html>',
   require => File['/etc/apache2/sites-enabled/your_website.conf'],
-  notify  => Service['apache2'],
-}
-
-# Fixing file permissions issue
-file { '/var/log/apache2/error.log':
-  owner   => 'www-data',
-  group   => 'www-data',
-  mode    => '0644',
-  require => Package['apache2'],
   notify  => Service['apache2'],
 }
 
