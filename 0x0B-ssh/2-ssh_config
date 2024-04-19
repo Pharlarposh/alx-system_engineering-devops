@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# config file
+
+Host *
+    PasswordAuthentication no
+
+Host 8.8.8.8
+    IdentityFile ~/.ssh/school
