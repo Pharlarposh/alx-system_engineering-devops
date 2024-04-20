@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # This script gracefully reloads Gunicorn without downtime.
 
 # Check if Gunicorn is running
