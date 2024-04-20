@@ -5,6 +5,14 @@ key_name="school"
 key_bits=4096
 passphrase="betty"
 
-# Generate the RSA key pair
+# Generate the RSA key pair with specified key size and passphrase
 ssh-keygen -t rsa -b $key_bits -N "$passphrase" -f "$key_name"
+
+# Check if the key file exists
+if [ -f "$key_name" ]; then
+    echo "The $key_name file exists after script execution"
+else
+    echo "Error: $key_name file not found after script execution"
+    exit 1
+fi
 
