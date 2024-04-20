@@ -1,24 +1,4 @@
 #!/usr/bin/env bash
-# This script gracefully reloads Gunicorn without downtime.
+# This script gracefully reloads Gunicorn without downtime
 
-# Check if Gunicorn is running
-if ! pgrep -x "gunicorn" > /dev/null; then
-    echo "Gunicorn is not running."
-    exit 1
-fi
-
-# Send HUP signal to Gunicorn master process
-echo "Reloading Gunicorn gracefully..."
-pkill -HUP -x "gunicorn"
-
-# Wait for a few seconds to allow workers to finish processing requests
-sleep 5
-
-# Check if Gunicorn has been successfully reloaded
-if pgrep -x "gunicorn" > /dev/null; then
-    echo "Gunicorn has been reloaded successfully."
-    exit 0
-else
-    echo "Failed to reload Gunicorn."
-    exit 1
-fi
+pgrep gunicorn | xarga kill -HUP
