@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# This script gracefully reloads Gunicorn without downtime
-
-pgrep gunicorn | xargs kill -HUP
