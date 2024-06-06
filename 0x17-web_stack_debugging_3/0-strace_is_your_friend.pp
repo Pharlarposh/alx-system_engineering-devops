@@ -7,11 +7,11 @@ package { 'apache2':
 
 # Configure Apache virtual host
 file { '/etc/apache2/sites-available/your_website.conf':
-  content => " <VirtualHost *:80>
+  content => "<VirtualHost *:80>
                   ServerAdmin webmaster@localhost
                   DocumentRoot /var/www/html
-                  ErrorLog ${apache_log_dir}/error.log
-                  CustomLog ${apache_log_dir}/access.log combined
+                  ErrorLog \${APACHE_LOG_DIR}/error.log
+                  CustomLog \${APACHE_LOG_DIR}/access.log combined
               </VirtualHost>",
   require => Package['apache2'],
   notify  => Service['apache2'],
@@ -41,7 +41,7 @@ file { '/var/www/html/index.html':
   notify  => Service['apache2'],
 }
 
-# Restart Apache service
+# Ensure Apache service is running
 service { 'apache2':
   ensure => 'running',
   enable => true,
